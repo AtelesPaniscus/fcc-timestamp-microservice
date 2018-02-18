@@ -1,34 +1,31 @@
 {
-  "name": "clementinejs-fcc",
-  "version": "1.0.1",
-  "description": "The elegant and lightweight boilerplate for full stack JavaScript.",
+  "name": "fcc-timestamp-microservice",
+  "description": "freeCodeCamp Timestamp Microservice Project",
+  "version": "1.0.0",
+  "author": "AtelesPaniscus",
+  "license": "MIT",
+  "homepage": "https://timestamp-microservice-pa.glitch.me/",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "6.13.0"
+  },
+  "dependencies": {
+    "express": "^4.12.4",
+    "strftime": "^0.10.0"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/johnstonbl01/clementinejs-fcc"
+    "url": "https://github.com/AtelesPaniscus/fcc-timestamp-microservice"
   },
-  "homepage": "http://www.clementinejs.com/",
-  "bugs": "https://github.com/johnstonbl01/clementinejs-fcc/issues",
   "keywords": [
-    "MongoDB",
-    "Mongoose",
+    "fcc",
+    "microservice",
     "full stack",
     "Express",
     "Node",
-    "javascript",
-    "boilerplate"
-  ],
-  "scripts": {
-  "start": "node server.js"
-  },
-  "author": "Blake Johnston",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^1.2.0",
-    "express": "^4.12.4",
-    "express-session": "^1.11.3",
-    "mongoose": "^4.1.0",
-    "passport": "^0.3.0",
-    "passport-github": "^1.0.0"
-  }
+    "javascript"
+  ]
 }

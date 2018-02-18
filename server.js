@@ -1,34 +1,40 @@
 'use strict';
 
-var express = require('express');
-var routes = require('./app/routes/index.js');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var session = require('express-session');
+const express = require('express');
+const strftime = require('strftime');
+
+const port = process.env.PORT || 8080;
+
+const website = process.cwd() + '/public';
 
 var app = express();
-require('dotenv').load();
-require('./app/config/passport')(passport);
 
-mongoose.connect(process.env.MONGO_URI);
-mongoose.Promise = global.Promise;
+app.use(express.static(website));
 
-app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
-app.use('/public', express.static(process.cwd() + '/public'));
-app.use('/common', express.static(process.cwd() + '/app/common'));
-
-app.use(session({
-	secret: 'secretClementine',
-	resave: false,
-	saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-routes(app, passport);
-
-var port = process.env.PORT || 8080;
-app.listen(port,  function () {
-	console.log('Node.js listening on port ' + port + '...');
+app.get("/:id", (request, response) => {
+    response.json(parseTime(request.params.id));
 });
+
+app.set('json spaces', 2);
+
+app.listen(port,  function () {
+    console.log('Node.js listening on port ' + port + '...');
+});
+
+function parseTime(string) {
+  var number = new Number(string);
+
+  var date = new Date(isNaN(number) ? string : number * 1000);
+
+  var values = {
+    "unix":    date.getTime() / 1000,
+    "natural": date.toDateString(),
+    };
+
+  if (values.natural == "Invalid Date")
+    values.natural = null;
+  else
+    values.natural = strftime("%B %d, %Y", date);
+
+  return values;
+}
